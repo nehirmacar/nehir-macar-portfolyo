@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sakura çiçeği simgesi">
+  <defs>
+    <linearGradient id="petalGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3b6c4"/>
+      <stop offset="100%" stop-color="#e28ba0"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(32,32)">
+    <g fill="url(#petalGradient)">
+      <path d="M0,-22 C8,-14 8,-4 0,0 C-8,-4 -8,-14 0,-22 Z"/>
+      <path d="M0,-22 C8,-14 8,-4 0,0 C-8,-4 -8,-14 0,-22 Z" transform="rotate(72)"/>
+      <path d="M0,-22 C8,-14 8,-4 0,0 C-8,-4 -8,-14 0,-22 Z" transform="rotate(144)"/>
+      <path d="M0,-22 C8,-14 8,-4 0,0 C-8,-4 -8,-14 0,-22 Z" transform="rotate(216)"/>
+      <path d="M0,-22 C8,-14 8,-4 0,0 C-8,-4 -8,-14 0,-22 Z" transform="rotate(288)"/>
+    </g>
+    <circle r="4.5" fill="#9dc3e6"/>
+  </g>
+</svg>
