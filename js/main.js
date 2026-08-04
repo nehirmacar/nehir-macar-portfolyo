@@ -1,84 +1,52 @@
 // Nehir Macar — Kişisel Web Sitesi
 // 1) Footer yılı  2) Saatlik / çok dilli karşılama  3) Sakura yaprağı animasyonu
 
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* =========================================================
-   1) Saatlik, üç dilli (TR / EN / FR) karşılama mesajı
+   1) Kartların tıklamayla dönmesi
    ========================================================= */
-(function multilingualGreeting() {
-  const wordEl = document.getElementById("greeting-word");
-  const subEl = document.getElementById("greeting-sub");
-  const langEl = document.getElementById("greeting-lang");
-  const cardEl = document.querySelector(".greeting-card");
-  if (!wordEl || !subEl || !langEl || !cardEl) return;
-
-  const GREETINGS_BY_PERIOD = {
-    morning: { tr: "Günaydın", en: "Good morning", fr: "Bonjour" },
-    afternoon: { tr: "İyi günler", en: "Good afternoon", fr: "Bon après-midi" },
-    evening: { tr: "İyi akşamlar", en: "Good evening", fr: "Bonsoir" },
-    night: { tr: "İyi geceler", en: "Good night", fr: "Bonne nuit" },
-  };
-
-  const SUBTITLES = {
-    tr: "Bu sayfaya uğradığın için teşekkürler.",
-    en: "Thanks for stopping by this page.",
-    fr: "Merci de visiter cette page.",
-  };
-
-  const LANG_LABELS = { tr: "TR", en: "EN", fr: "FR" };
-  const LANG_ORDER = ["tr", "en", "fr"];
-
-  function getPeriodOfDay() {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) return "morning";
-    if (hour >= 12 && hour < 18) return "afternoon";
-    if (hour >= 18 && hour < 23) return "evening";
-    return "night";
-  }
-
-  let langIndex = 0;
-
-  function render() {
-    const lang = LANG_ORDER[langIndex];
-    const period = getPeriodOfDay();
-    wordEl.textContent = GREETINGS_BY_PERIOD[period][lang];
-    subEl.textContent = SUBTITLES[lang];
-    langEl.textContent = LANG_LABELS[lang];
-    langIndex = (langIndex + 1) % LANG_ORDER.length;
-  }
-
-  render();
-
-  if (prefersReducedMotion) return; // metni tek dilde sabit bırak, döngü kurma
-
-  setInterval(() => {
-    cardEl.classList.add("is-fading");
-    setTimeout(() => {
-      render();
-      cardEl.classList.remove("is-fading");
-    }, 400);
-  }, 3200);
+(function greetingCards() {
+  const cards = Array.from(document.querySelectorAll(".greeting-card"));
+  cards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      event.preventDefault();
+      const isFlipped = card.classList.contains("is-flipped");
+      card.classList.toggle("is-flipped", !isFlipped);
+      card.setAttribute("aria-pressed", String(!isFlipped));
+    });
+  });
 })();
 
 /* =========================================================
-   2) Doğa animasyonu: usulca süzülen sakura yaprakları
+   2) Başarı kartı flip animasyonu
+   ========================================================= */
+(function achievementEnvelopes() {
+  const envelopes = Array.from(document.querySelectorAll(".achievement-envelope"));
+  envelopes.forEach((envelope) => {
+    envelope.addEventListener("click", () => {
+      const isFlipped = envelope.classList.toggle("is-flipped");
+      envelope.setAttribute("aria-pressed", String(isFlipped));
+    });
+  });
+})();
+
+/* =========================================================
+   3) Doğa animasyonu: usulca süzülen sakura yaprakları
    ========================================================= */
 (function sakuraPetals() {
   const canvas = document.getElementById("petals-canvas");
   if (!canvas) return;
 
-  // Erişilebilirlik ve performans: hareket azaltma tercihinde animasyonu hiç başlatma.
-  if (prefersReducedMotion) {
-    canvas.remove();
-    return;
-  }
-
   const ctx = canvas.getContext("2d");
   const isSmallScreen = window.matchMedia("(max-width: 640px)").matches;
-  const PETAL_COUNT = isSmallScreen ? 12 : 24;
+  const PETAL_COUNT = isSmallScreen ? 18 : 32;
+  const PASTEL_COLORS = ["#f6a8c5", "#ff5f9f", "#f3d0e2", "#ff7fb0"];
 
   let width, height, dpr;
   let petals = [];
@@ -101,19 +69,30 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
     return min + Math.random() * (max - min);
   }
 
-  function createPetal() {
+  function getSideBounds() {
+    const laneWidth = Math.min(140, Math.max(70, Math.floor(width * 0.16)));
     return {
-      x: randomBetween(0, width),
-      y: randomBetween(-height, 0),
-      size: randomBetween(6, 13),
-      speedY: randomBetween(0.4, 1.1),
-      driftX: randomBetween(-0.4, 0.4),
+      left: { x: 0, width: laneWidth },
+      right: { x: width - laneWidth, width: laneWidth },
+    };
+  }
+
+  function createPetal() {
+    const centerX = width / 2;
+    const spread = Math.min(width * 0.28, 220);
+
+    return {
+      x: randomBetween(centerX - spread, centerX + spread),
+      y: randomBetween(-height * 0.4, height * 0.25),
+      size: randomBetween(10, 20),
+      speedY: randomBetween(0.7, 1.7),
+      driftX: randomBetween(-0.18, 0.18),
       sway: randomBetween(0, Math.PI * 2),
-      swaySpeed: randomBetween(0.005, 0.02),
+      swaySpeed: randomBetween(0.008, 0.025),
       rotation: randomBetween(0, Math.PI * 2),
-      rotationSpeed: randomBetween(-0.01, 0.01),
-      hue: Math.random() > 0.5 ? "pink" : "blue",
-      opacity: randomBetween(0.35, 0.7),
+      rotationSpeed: randomBetween(-0.012, 0.012),
+      opacity: randomBetween(0.45, 0.9),
+      color: PASTEL_COLORS[Math.floor(Math.random() * PASTEL_COLORS.length)],
     };
   }
 
@@ -122,10 +101,47 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rotation);
     ctx.globalAlpha = p.opacity;
-    ctx.fillStyle = p.hue === "pink" ? "#e7a9b6" : "#9dc3e6";
+    ctx.shadowColor = "rgba(255, 95, 159, 0.28)";
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = p.color;
     ctx.beginPath();
     ctx.ellipse(0, 0, p.size, p.size * 0.6, 0, 0, Math.PI * 2);
     ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,0.65)";
+    ctx.lineWidth = 0.6;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawSparkle(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation);
+    ctx.globalAlpha = p.opacity;
+
+    const sparkleGlow = ctx.createRadialGradient(0, 0, 0, 0, 0, p.size * 1.8);
+    sparkleGlow.addColorStop(0, "rgba(255,255,255,0.98)");
+    sparkleGlow.addColorStop(0.35, "rgba(255,122,176,0.92)");
+    sparkleGlow.addColorStop(0.75, "rgba(255,95,159,0.28)");
+    sparkleGlow.addColorStop(1, "rgba(177,51,105,0.08)");
+
+    ctx.globalCompositeOperation = "screen";
+    ctx.shadowColor = "rgba(255,255,255,0.9)";
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = sparkleGlow;
+    ctx.beginPath();
+    ctx.arc(0, 0, p.size * 0.45, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.95)";
+    ctx.lineWidth = 1.3;
+    ctx.beginPath();
+    ctx.moveTo(-p.size, 0);
+    ctx.lineTo(p.size, 0);
+    ctx.moveTo(0, -p.size);
+    ctx.lineTo(0, p.size);
+    ctx.stroke();
     ctx.restore();
   }
 
@@ -141,8 +157,11 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
       if (p.y > height + 20) {
         Object.assign(p, createPetal(), { y: -20 });
       }
-      if (p.x > width + 20) p.x = -20;
-      if (p.x < -20) p.x = width + 20;
+
+      const centerX = width / 2;
+      const spread = Math.min(width * 0.28, 220);
+      if (p.x > centerX + spread + 12) p.x = centerX - spread - 6;
+      if (p.x < centerX - spread - 12) p.x = centerX + spread + 6;
 
       drawPetal(p);
     }
@@ -160,7 +179,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
         trail.splice(i, 1);
         continue;
       }
-      drawPetal(t);
+      drawSparkle(t);
     }
 
     rafId = requestAnimationFrame(step);
@@ -191,32 +210,9 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
     else stop();
   });
 
-  /* ---- Narin imleç efekti: fare hareket ettikçe hafif bir yaprak izi (yalnızca masaüstünde) ---- */
+  /* ---- Narin imleç efekti: fare hareket ettikçe hafif gümüş parıltı izi (yalnızca masaüstünde) ---- */
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   if (canHover) {
     let lastTrailTime = 0;
-    window.addEventListener("pointermove", (event) => {
-      const now = performance.now();
-      if (now - lastTrailTime < 90) return; // iz oluşturma sıklığını sınırla
-      lastTrailTime = now;
-
-      const maxLife = 45;
-      trail.push({
-        x: event.clientX,
-        y: event.clientY,
-        size: randomBetween(3, 6),
-        speedY: randomBetween(0.3, 0.6),
-        driftX: randomBetween(-0.3, 0.3),
-        rotation: randomBetween(0, Math.PI * 2),
-        rotationSpeed: randomBetween(-0.02, 0.02),
-        hue: Math.random() > 0.5 ? "pink" : "blue",
-        opacity: 0.5,
-        life: maxLife,
-        maxLife,
-      });
-
-      // İz parçacıklarının sayısını makul bir sınırda tut.
-      if (trail.length > 40) trail.shift();
-    });
-  }
-})();
+    const addSparkle = (event) => {
+      const now = performance.now()

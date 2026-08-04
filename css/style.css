@@ -6,17 +6,21 @@
 
 :root {
   /* Renkler */
-  --color-bg: #fdf3f5;
-  --color-bg-alt: #ffffff;
-  --color-pink-light: #f6dde2;
-  --color-pink: #e7a9b6;
-  --color-pink-dark: #cf8a9a;
-  --color-blue-light: #dcebf7;
-  --color-blue: #9dc3e6;
-  --color-blue-dark: #6ea8d8;
-  --color-text: #4a3b40;
-  --color-text-light: #7d6b70;
-  --color-border: #f0dde1;
+  --color-bg: #06070b;
+  --color-bg-alt: #121621;
+  --color-pink-light: #2d1b2e;
+  --color-pink: #f4a7c3;
+  --color-pink-dark: #ffb7d0;
+  --color-blue-light: #162235;
+  --color-blue: #7cb7f6;
+  --color-blue-dark: #9fd2ff;
+  --color-text: #f5e9f0;
+  --color-text-light: #b9bac3;
+  --color-border: #2b3347;
+  --color-magenta-ink: #2f1121;
+  --color-magenta-deep: #6e2146;
+  --color-magenta-strong: #ff5f9f;
+  --color-magenta-soft: #ffe3ee;
 
   /* Tipografi */
   --font-heading: "Poppins", "Nunito", sans-serif;
@@ -95,6 +99,7 @@ button {
   height: 100%;
   pointer-events: none;
   z-index: 0;
+  background: transparent;
 }
 
 /* ---------- Üst menü ---------- */
@@ -106,7 +111,7 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 1.1rem 1.5rem;
-  background: rgba(253, 243, 245, 0.8);
+  background: rgba(6, 7, 11, 0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
 }
@@ -126,7 +131,7 @@ button {
 
 .nav__links a {
   text-decoration: none;
-  color: var(--color-text-light);
+  color: #c8cfe0;
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.4rem 0.2rem;
@@ -142,6 +147,16 @@ button {
 main {
   position: relative;
   z-index: 1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255,95,159,0.12), transparent 34%),
+              radial-gradient(circle at bottom right, rgba(255,95,159,0.1), transparent 30%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .section {
@@ -290,249 +305,206 @@ main {
   margin-top: 2rem;
 }
 
-.achievement-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.achievement-envelope {
+  position: relative;
+  min-height: 280px;
+  height: 100%;
+  cursor: pointer;
+  perspective: 1200px;
+  border-radius: 22px;
+  isolation: isolate;
+  display: flex;
+  --card-rotation: 0deg;
+  --card-translate-x: 0px;
+  --card-translate-y: 0px;
+  transform: rotate(var(--card-rotation)) translate(var(--card-translate-x), var(--card-translate-y));
 }
 
-.achievement-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-soft);
+.achievement-envelope:nth-child(1) {
+  --card-rotation: -7deg;
+  --card-translate-x: -8px;
+  --card-translate-y: 0px;
 }
 
-.achievement-card h3 {
-  font-size: 1.15rem;
+.achievement-envelope:nth-child(2) {
+  --card-rotation: 5deg;
+  --card-translate-x: 0px;
+  --card-translate-y: 10px;
 }
 
-.achievement-card__link {
-  display: inline-block;
-  margin-top: 0.5rem;
+.achievement-envelope:nth-child(3) {
+  --card-rotation: -4deg;
+  --card-translate-x: 8px;
+  --card-translate-y: -6px;
+}
+
+.achievement-envelope__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.achievement-envelope.is-flipped .achievement-envelope__inner {
+  transform: rotateY(180deg);
+}
+
+.achievement-envelope__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.2rem;
+  border-radius: 22px;
+  backface-visibility: hidden;
+  box-shadow: 0 16px 34px rgba(153, 42, 84, 0.16);
+  border: 1px solid rgba(255,255,255,0.75);
+}
+
+.achievement-envelope__face--front {
+  background: linear-gradient(145deg, #ffe8ef 0%, #f4a7c3 100%);
+  color: #6e2146;
+}
+
+.achievement-envelope__face--back {
+  background: linear-gradient(145deg, #fffdfd 0%, #fef4f7 100%);
+  color: #4b1831;
+  transform: rotateY(180deg);
+  border-color: rgba(255, 171, 199, 0.35);
+  justify-content: center;
+  align-items: center;
+  padding: 0.95rem;
+}
+
+.achievement-envelope__star {
+  font-size: 2.35rem;
+  color: var(--color-magenta-strong);
+  text-shadow: 0 0 14px rgba(255,95,159,0.2);
+}
+
+.achievement-envelope__hint {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7a3353;
+}
+
+.achievement-envelope__paper {
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.achievement-envelope__paper-inner {
+  width: min(100%, 92%);
+  max-width: 320px;
+  min-height: 190px;
+  padding: 1rem 1.15rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fffdfd 0%, #fef4f7 100%);
+  border: 1px solid rgba(255, 171, 199, 0.35);
+  box-shadow: 0 12px 24px rgba(153, 42, 84, 0.16);
+  color: #4b1831;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.45rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.achievement-envelope__paper h3 {
+  margin: 0;
+  font-size: 0.96rem;
+  color: #4c1730;
+  font-weight: 800;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+.achievement-envelope__paper p {
+  margin: 0;
+  color: #67354a;
+  font-size: 0.9rem;
+  line-height: 1.55;
   font-weight: 700;
-  text-decoration: none;
-  color: var(--color-blue-dark);
-}
-
-.achievement-card__link:hover {
-  text-decoration: underline;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 /* ---------- Özel özellik: çok dilli karşılama ---------- */
-.greeting-card {
-  margin-top: 2rem;
-  max-width: 420px;
+#ozel-ozellik {
   text-align: center;
-  padding: 2.5rem 2rem;
-  position: relative;
-  background: linear-gradient(160deg, var(--color-bg-alt) 0%, var(--color-pink-light) 140%);
 }
 
-.greeting-card__lang {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: var(--color-blue-dark);
-  background: var(--color-blue-light);
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
+#ozel-ozellik .section__lead {
+  margin: 0 auto 1.5rem;
 }
 
-.greeting-card__word {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 1rem 0 0.4rem;
-  color: var(--color-pink-dark);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.greeting-card__sub {
-  color: var(--color-text-light);
-  margin: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.greeting-card.is-fading .greeting-card__word,
-.greeting-card.is-fading .greeting-card__sub {
-  opacity: 0;
-  transform: translateY(4px);
-}
-
-/* ---------- Buton temel stili ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.85rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 44px;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn--primary {
-  background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-pink-dark) 100%);
-  color: #fff;
-  box-shadow: var(--shadow-soft);
-}
-
-.btn--secondary {
-  background: var(--color-bg-alt);
-  color: var(--color-text);
-  border: 2px solid var(--color-border);
-}
-
-.btn--secondary:hover {
-  border-color: var(--color-pink);
-}
-
-/* ---------- Hero ---------- */
-.hero {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 4.5rem 1.5rem 5rem;
+.greeting-cards {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: 3rem;
-}
-
-.hero__name {
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
-  margin-bottom: 0.3em;
-  color: var(--color-pink-dark); /* degrade edilebilir yedek renk */
-}
-
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .hero__name {
-    background: linear-gradient(120deg, var(--color-pink-dark), var(--color-blue-dark));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-}
-
-.hero__tagline {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  color: var(--color-text-light);
-  max-width: 46ch;
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.75rem;
-}
-
-.hero__portrait {
-  justify-self: center;
-  width: 100%;
-  max-width: 340px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  background: var(--color-bg-alt);
-}
-
-.hero__portrait img {
-  width: 100%;
-  height: auto;
-}
-
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding: 3rem 1.25rem 3.5rem;
-    gap: 2.25rem;
-  }
-
-  .hero__tagline {
-    max-width: none;
-    margin-inline: auto;
-  }
-
-  .hero__actions {
-    justify-content: center;
-  }
-
-  .hero__portrait {
-    order: -1;
-    max-width: 220px;
-  }
-}
-
-/* ---------- İletişim ---------- */
-.contact-card {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
   margin-top: 2rem;
-  max-width: 420px;
-  text-align: center;
-  padding: 2.5rem 2rem;
-}
-
-.contact-card__email {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--color-text);
-  margin-bottom: 1.25rem;
-  word-break: break-word;
-}
-
-/* ---------- Footer ---------- */
-.footer {
+  align-items: stretch;
   position: relative;
   z-index: 1;
-  text-align: center;
-  padding: 2.5rem 1.5rem 3rem;
-  color: var(--color-text-light);
-  font-size: 0.9rem;
 }
 
-/* ---------- Erişilebilirlik: azaltılmış hareket ---------- */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+.greeting-card {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1000px;
+  --card-rotation: 0deg;
+  --card-translate-x: 0px;
+  --card-translate-y: 0px;
+  transform: rotate(var(--card-rotation)) translate(var(--card-translate-x), var(--card-translate-y));
 }
 
-/* ---------- Mobil uyum (genel) ---------- */
-@media (max-width: 640px) {
-  .nav {
-    padding: 0.9rem 1rem;
-  }
-
-  .nav__links {
-    gap: 0.9rem;
-  }
-
-  .nav__links a {
-    font-size: 0.85rem;
-  }
-
-  .section {
-    padding: 3.5rem 1.25rem;
-  }
+.greeting-card:nth-child(1) {
+  --card-rotation: -7deg;
+  --card-translate-x: -8px;
+  --card-translate-y: 0px;
 }
 
-/* Çok dar ekranlarda menü öğelerinin taşmasını önlemek için alt satıra sar */
-@media (max-width: 460px) {
-  .nav {
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .nav__links {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.greeting-card:nth-child(2) {
+  --card-rotation: 5deg;
+  --card-translate-x: 0px;
+  --card-translate-y: 14px;
 }
+
+.greeting-card:nth-child(3) {
+  --card-rotation: -4deg;
+  --card-translate-x: 8px;
+  --card-translate-y: -6px;
+}
+
+.greeting-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
+  transform-origin: center center;
+}
+
+.greeting-card.is-flipped .greeting-card__inner {
+  transform: rot

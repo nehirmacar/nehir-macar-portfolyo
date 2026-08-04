@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20260804b" />
 </head>
 <body>
   <!-- Doğa animasyonu: arka planda süzülen sakura yaprakları (js/main.js tarafından çizilir) -->
@@ -40,14 +40,6 @@
           <a class="btn btn--primary" href="#basarilar">Projelerime bak ↓</a>
           <a class="btn btn--secondary" href="#iletisim">Bana ulaş</a>
         </div>
-      </div>
-      <div class="hero__portrait">
-        <img
-          src="assets/profile-placeholder.svg"
-          alt="Nehir Macar'ı temsil eden stilize, sakura dallı bir illüstrasyon"
-          width="420"
-          height="420"
-        />
       </div>
     </section>
 
@@ -86,9 +78,6 @@
             Web geliştirme ve yapay zeka araçlarıyla küçük kişisel projeler
             üretmeyi öğreniyorum — bu site de bunlardan biri.
           </p>
-          <p class="about__learning-note">
-            (Bu alanı güncel öğrendiklerinle kolayca güncelleyebilirsin.)
-          </p>
         </div>
       </div>
     </section>
@@ -99,28 +88,56 @@
     <section class="section" id="basarilar">
       <p class="section__eyebrow">Başarılar</p>
       <h2 class="section__title">Bugüne kadar biriktirdiklerim</h2>
-      <p class="section__lead">
-        Aşağıdaki kartlar örnek yer tutuculardır — kendi ödüllerin,
-        projelerin ve sınav başarılarınla güncelleyebilirsin.
-      </p>
-
       <div class="achievements__grid">
-        <article class="card achievement-card">
-          <h3>Örnek Başarı 1</h3>
-          <p>Buraya başarının kısa bir açıklamasını yazabilirsin — ne zaman, nerede ve neden önemliydi.</p>
-          <span class="achievement-card__link">Buraya link/görsel ekleyebilirsin →</span>
+        <article class="achievement-envelope" aria-label="Saint-Joseph Fransız Lisesi'ni kazanmam">
+          <div class="achievement-envelope__inner">
+            <div class="achievement-envelope__face achievement-envelope__face--front" aria-hidden="true">
+              <span class="achievement-envelope__star">✦</span>
+              <span class="achievement-envelope__hint">Açmak için tıkla</span>
+            </div>
+            <div class="achievement-envelope__face achievement-envelope__face--back">
+              <div class="achievement-envelope__paper">
+                <div class="achievement-envelope__paper-inner">
+                  <h3>Saint-Joseph Fransız Lisesi'ni kazanmam</h3>
+                  <p>Köklü bir Fransız lisesine kabul edildim.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
 
-        <article class="card achievement-card">
-          <h3>Örnek Başarı 2</h3>
-          <p>Bir yarışma, sertifika ya da tamamladığın bir proje için kısa bir özet buraya gelebilir.</p>
-          <span class="achievement-card__link">Buraya link/görsel ekleyebilirsin →</span>
+        <article class="achievement-envelope" aria-label="Exposure AI'a girmem">
+          <div class="achievement-envelope__inner">
+            <div class="achievement-envelope__face achievement-envelope__face--front" aria-hidden="true">
+              <span class="achievement-envelope__star">✦</span>
+              <span class="achievement-envelope__hint">Açmak için tıkla</span>
+            </div>
+            <div class="achievement-envelope__face achievement-envelope__face--back">
+              <div class="achievement-envelope__paper">
+                <div class="achievement-envelope__paper-inner">
+                  <h3>Exposure AI'a girmem</h3>
+                  <p>Yazılım ve yapay zeka projeleri geliştirdiğim programa seçildim.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
 
-        <article class="card achievement-card">
-          <h3>Örnek Başarı 3</h3>
-          <p>İstersen bu kartı bir sınav sonucun ya da katıldığın bir etkinlik için kullanabilirsin.</p>
-          <span class="achievement-card__link">Buraya link/görsel ekleyebilirsin →</span>
+        <article class="achievement-envelope" aria-label="Resim yarışmasında derece">
+          <div class="achievement-envelope__inner">
+            <div class="achievement-envelope__face achievement-envelope__face--front" aria-hidden="true">
+              <span class="achievement-envelope__star">✦</span>
+              <span class="achievement-envelope__hint">Açmak için tıkla</span>
+            </div>
+            <div class="achievement-envelope__face achievement-envelope__face--back">
+              <div class="achievement-envelope__paper">
+                <div class="achievement-envelope__paper-inner">
+                  <h3>Resim yarışmasında derece</h3>
+                  <p>Okulumun düzenlediği resim yarışmasında derece kazandım.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -132,27 +149,17 @@
       <h2 class="section__title">Beni buradan da bulabilirsin</h2>
 
       <div class="links__grid">
-        <a class="link-card" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
-          <span class="link-card__icon" aria-hidden="true">🐙</span>
+        <a class="link-card" href="https://github.com/nehirmacar" target="_blank" rel="noopener noreferrer">
           <span>
             <strong>GitHub</strong>
             <span class="link-card__sub">Kod ve projelerim</span>
           </span>
         </a>
 
-        <a class="link-card" href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer">
-          <span class="link-card__icon" aria-hidden="true">💼</span>
+        <a class="link-card" href="https://tr.linkedin.com/in/nehir-macar-5b9bba3a5?original_referer=https%3A%2F%2Fwww.google.com%2F" target="_blank" rel="noopener noreferrer">
           <span>
             <strong>LinkedIn</strong>
             <span class="link-card__sub">Profesyonel profilim</span>
-          </span>
-        </a>
-
-        <a class="link-card" href="https://www.instagram.com/your-username" target="_blank" rel="noopener noreferrer">
-          <span class="link-card__icon" aria-hidden="true">📷</span>
-          <span>
-            <strong>Instagram</strong>
-            <span class="link-card__sub">Günlük kareler</span>
           </span>
         </a>
       </div>
@@ -161,48 +168,23 @@
     <!-- ================= ÖZEL ÖZELLİK: ÇOK DİLLİ KARŞILAMA ================= -->
     <section class="section feature" id="ozel-ozellik">
       <p class="section__eyebrow">Bana özel bir dokunuş</p>
-      <h2 class="section__title">Üç dilde, günün saatine göre bir merhaba</h2>
-      <p class="section__lead">
-        Üç dil konuştuğum için, bu kartta gösterilen karşılama mesajı hem
-        şu anki saate (günaydın / iyi günler / iyi akşamlar) göre değişiyor
-        hem de Türkçe, İngilizce ve Fransızca arasında dönüyor. Sayfanın
-        arka planında usulca süzülen sakura yaprakları da bu bölüme eşlik
-        ediyor — fareni kıpırdatırsan onlara ince bir iz de eklenir.
-      </p>
+      <h2 class="section__title">Üç dilde merhaba demeyi öğrenin!</h2>
+      <div class="greeting-cards" aria-label="Üç dilde merhaba kartları">
+        <button class="greeting-card" type="button" aria-label="Türkçe Merhaba kartı">
+          <span class="greeting-card__inner">
+            <span class="greeting-card__face greeting-card__face--front">
+              <span class="greeting-card__heart">♡</span>
+            </span>
+            <span class="greeting-card__face greeting-card__face--back">
+              <span class="greeting-card__word">Merhaba</span>
+              <span class="greeting-card__small">Türkçe</span>
+              <span class="greeting-card__tiny">Türkçe, ana dilimdir.</span>
+            </span>
+          </span>
+        </button>
 
-      <div class="greeting-card card">
-        <span class="greeting-card__lang" id="greeting-lang">TR</span>
-        <p class="greeting-card__word" id="greeting-word">Merhaba</p>
-        <p class="greeting-card__sub" id="greeting-sub">Bu sayfaya uğradığın için teşekkürler.</p>
-      </div>
-    </section>
-
-    <!-- ================= İLETİŞİM ================= -->
-    <section class="section" id="iletisim">
-      <p class="section__eyebrow">İletişim</p>
-      <h2 class="section__title">Sohbet etmek ister misin?</h2>
-      <p class="section__lead">
-        Bir proje fikri, ortak bir ilgi alanı ya da sadece merhaba demek
-        istiyorsan, bana e-posta atman yeterli.
-      </p>
-
-      <div class="contact-card card">
-        <p class="contact-card__email">nehir.macar@sj.k12.tr</p>
-        <a
-          class="btn btn--primary"
-          href="mailto:nehir.macar@sj.k12.tr?subject=Merhaba%20Nehir!"
-        >
-          ✉️ Bana e-posta gönder
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <p>&copy; <span id="year"></span> Nehir Macar. Sevgiyle kodlandı.</p>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
+        <button class="greeting-card" type="button" aria-label="İngilizce Hello kartı">
+          <span class="greeting-card__inner">
+            <span class="greeting-card__face greeting-card__face--front">
+              <span class="greeting-card__heart">♡</span>
+            </
