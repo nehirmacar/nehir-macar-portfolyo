@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260804b" />
+  <link rel="stylesheet" href="css/style.css?v=20260805a" />
 </head>
 <body>
   <!-- Doğa animasyonu: arka planda süzülen sakura yaprakları (js/main.js tarafından çizilir) -->
@@ -240,6 +240,76 @@
     <p>&copy; 5 Ağustos 2026 · Nehir Macar</p>
   </footer>
 
+  <!-- ================= PATİ CHATBOT ================= -->
+  <div id="pati-chatbot" class="pati">
+    <button
+      id="pati-toggle"
+      class="pati__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="pati-panel"
+      aria-label="Pati ile sohbet et"
+    >
+      <span aria-hidden="true">🐱</span>
+    </button>
+
+    <section
+      id="pati-panel"
+      class="pati__panel"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="pati-title"
+      hidden
+    >
+      <header class="pati__header">
+        <div class="pati__header-info">
+          <span class="pati__avatar" aria-hidden="true">🐾</span>
+          <div>
+            <p id="pati-title" class="pati__title">Pati</p>
+            <p class="pati__subtitle">Nehir'in kedi asistanı</p>
+          </div>
+        </div>
+        <button id="pati-close" class="pati__close" type="button" aria-label="Sohbeti kapat">
+          ✕
+        </button>
+      </header>
+
+      <div id="pati-messages" class="pati__messages" aria-live="polite">
+        <div class="pati__message pati__message--bot">
+          Miyav! Ben Pati, Nehir'i tanıtan kedi asistanıyım. Onun projeleri, ilgi alanları,
+          başarıları ve hedefleri hakkında bana soru sorabilirsin. 🐱
+        </div>
+        <div id="pati-suggestions" class="pati__suggestions">
+          <button class="pati__suggestion" type="button" data-question="En büyük başarısı nedir?">
+            En büyük başarısı nedir?
+          </button>
+          <button class="pati__suggestion" type="button" data-question="Hangi projeleri yaptı?">
+            Hangi projeleri yaptı?
+          </button>
+          <button class="pati__suggestion" type="button" data-question="Gelecek hedefleri nelerdir?">
+            Gelecek hedefleri nelerdir?
+          </button>
+        </div>
+      </div>
+
+      <p id="pati-error" class="pati__error" role="alert" hidden></p>
+
+      <form id="pati-form" class="pati__form">
+        <label class="visually-hidden" for="pati-input">Pati'ye bir soru yaz</label>
+        <input
+          id="pati-input"
+          class="pati__input"
+          type="text"
+          placeholder="Bir şey sor..."
+          autocomplete="off"
+          maxlength="500"
+        />
+        <button id="pati-send" class="pati__send" type="submit" aria-label="Gönder">➤</button>
+      </form>
+    </section>
+  </div>
+
   <script src="js/main.js?v=20260804b"></script>
+  <script src="js/chatbot.js?v=20260805a"></script>
 </body>
 </html>

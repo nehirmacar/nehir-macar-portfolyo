@@ -742,6 +742,11 @@ body::before {
   html {
     scroll-behavior: auto;
   }
+
+  .pati__panel,
+  .pati__toggle {
+    transition: none;
+  }
 }
 
 /* ---------- Mobil uyum (genel) ---------- */
@@ -773,5 +778,274 @@ body::before {
   .nav__links {
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+
+/* =========================================================
+   Pati chatbot — sağ alt köşe widget'ı
+   ========================================================= */
+.pati {
+  position: fixed;
+  right: 1.5rem;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 0.85rem;
+}
+
+.pati__toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff5f9f 0%, #c63b72 100%);
+  box-shadow: 0 12px 24px rgba(198, 59, 114, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pati__toggle:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.pati__panel {
+  display: flex;
+  flex-direction: column;
+  width: 370px;
+  max-width: calc(100vw - 2.5rem);
+  height: min(560px, 75vh);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.pati__panel[hidden] {
+  display: none;
+}
+
+.pati__panel.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.pati__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  background: linear-gradient(135deg, var(--color-magenta-deep) 0%, #4a1633 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pati__header-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.pati__avatar {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.pati__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.pati__subtitle {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-magenta-soft);
+  opacity: 0.85;
+}
+
+.pati__close {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.pati__close:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.pati__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pati__message {
+  max-width: 85%;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.pati__message--bot {
+  align-self: flex-start;
+  background: var(--color-pink-light);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-bottom-left-radius: 4px;
+}
+
+.pati__message--user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #ff5f9f 0%, #c63b72 100%);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.pati__message--loading {
+  opacity: 0.75;
+  font-style: italic;
+}
+
+.pati__suggestions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.pati__suggestion {
+  max-width: 100%;
+  text-align: left;
+  background: rgba(255, 95, 159, 0.14);
+  border: 1px solid var(--color-pink);
+  color: var(--color-pink-dark);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.pati__suggestion:hover {
+  background: rgba(255, 95, 159, 0.24);
+  transform: translateY(-1px);
+}
+
+.pati__error {
+  margin: 0;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.82rem;
+  color: #ffb4c9;
+  background: rgba(255, 95, 159, 0.14);
+  border-top: 1px solid var(--color-border);
+}
+
+.pati__form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+}
+
+.pati__input {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+.pati__input:focus {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 1px;
+}
+
+.pati__input:disabled {
+  opacity: 0.6;
+}
+
+.pati__send {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff5f9f 0%, #c63b72 100%);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.pati__send:hover:not(:disabled) {
+  transform: scale(1.06);
+}
+
+.pati__send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- Pati: mobil uyum ---------- */
+@media (max-width: 640px) {
+  .pati {
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .pati__toggle {
+    width: 54px;
+    height: 54px;
+    font-size: 1.4rem;
+  }
+
+  .pati__panel {
+    position: fixed;
+    inset: auto 0.65rem calc(0.65rem + env(safe-area-inset-bottom, 0px)) 0.65rem;
+    width: auto;
+    max-width: none;
+    height: min(85dvh, 640px);
   }
 }
