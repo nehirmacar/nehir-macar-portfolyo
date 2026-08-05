@@ -77,12 +77,9 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
     };
   }
 
-  function createPetal() {
-    const centerX = width / 2;
-    const spread = Math.min(width * 0.28, 220);
-
+function createPetal() {
     return {
-      x: randomBetween(centerX - spread, centerX + spread),
+      x: randomBetween(0, width),
       y: randomBetween(-height * 0.4, height * 0.25),
       size: randomBetween(10, 20),
       speedY: randomBetween(0.7, 1.7),
@@ -158,10 +155,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
         Object.assign(p, createPetal(), { y: -20 });
       }
 
-      const centerX = width / 2;
-      const spread = Math.min(width * 0.28, 220);
-      if (p.x > centerX + spread + 12) p.x = centerX - spread - 6;
-      if (p.x < centerX - spread - 12) p.x = centerX + spread + 6;
+
 
       drawPetal(p);
     }
@@ -173,7 +167,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
       t.y += t.speedY;
       t.x += t.driftX;
       t.rotation += t.rotationSpeed;
-      t.opacity = Math.max(0, (t.life / t.maxLife) * 0.5);
+      t.opacity = Math.max(0, (t.life / t.maxLife) * 0.9);
 
       if (t.life <= 0) {
         trail.splice(i, 1);
@@ -215,4 +209,35 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
   if (canHover) {
     let lastTrailTime = 0;
     const addSparkle = (event) => {
-      const now = performance.now()
+      const now = performance.now();
+      if (now - lastTrailTime < 70) return;
+      lastTrailTime = now;
+
+      const maxLife = 24;
+      trail.push({
+        x: event.clientX,
+        y: event.clientY,
+        size: randomBetween(3.4, 6.8),
+        speedY: randomBetween(0.08, 0.24),
+        driftX: randomBetween(-0.16, 0.16),
+        rotation: randomBetween(0, Math.PI * 2),
+        rotationSpeed: randomBetween(-0.04, 0.04),
+        opacity: 0.95,
+        life: maxLife,
+        maxLife,
+      });
+
+      if (trail.length > 20) trail.shift();
+    };
+
+    window.addEventListener("pointermove", addSparkle);
+    window.addEventListener("mousemove", addSparkle);
+  }
+})();
+
+/* =========================================================
+   3) İletişim bölümüne gelince görsel efekt yok
+   ========================================================= */
+(function doveAnimation() {
+  return;
+})();
