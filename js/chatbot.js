@@ -16,12 +16,21 @@
   let isLoading = false;
   let closeTimeoutId = null;
 
+  function playMeow() {
+    try {
+      const audio = new Audio("assets/meow.wav");
+      audio.volume = 0.4;
+      audio.play().catch(() => {});
+    } catch (err) {}
+  }
+
   function openPanel() {
     clearTimeout(closeTimeoutId);
     panel.hidden = false;
     toggle.setAttribute("aria-expanded", "true");
     requestAnimationFrame(() => panel.classList.add("is-open"));
     input.focus();
+    playMeow();
   }
 
   function closePanel() {
