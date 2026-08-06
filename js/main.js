@@ -8,17 +8,28 @@ if (yearEl) {
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+function playNote(file) {
+  try {
+    const audio = new Audio(`assets/${file}`);
+    audio.volume = 0.4;
+    audio.play().catch(() => {});
+  } catch (err) {}
+}
+
 /* =========================================================
    1) Kartların tıklamayla dönmesi
    ========================================================= */
 (function greetingCards() {
   const cards = Array.from(document.querySelectorAll(".greeting-card"));
-  cards.forEach((card) => {
+  const NOTES = ["e.wav", "d.wav", "c.wav"];
+  cards.forEach((card, index) => {
     card.addEventListener("click", (event) => {
       event.preventDefault();
       const isFlipped = card.classList.contains("is-flipped");
-      card.classList.toggle("is-flipped", !isFlipped);
-      card.setAttribute("aria-pressed", String(!isFlipped));
+      const willFlip = !isFlipped;
+      card.classList.toggle("is-flipped", willFlip);
+      card.setAttribute("aria-pressed", String(willFlip));
+      if (willFlip) playNote(NOTES[index] || "c.wav");
     });
   });
 })();
@@ -28,10 +39,12 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
    ========================================================= */
 (function achievementEnvelopes() {
   const envelopes = Array.from(document.querySelectorAll(".achievement-envelope"));
-  envelopes.forEach((envelope) => {
+  const NOTES = ["c.wav", "d.wav", "e.wav"];
+  envelopes.forEach((envelope, index) => {
     envelope.addEventListener("click", () => {
       const isFlipped = envelope.classList.toggle("is-flipped");
       envelope.setAttribute("aria-pressed", String(isFlipped));
+      if (isFlipped) playNote(NOTES[index] || "c.wav");
     });
   });
 })();
