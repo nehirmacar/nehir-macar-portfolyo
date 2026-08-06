@@ -8,14 +8,6 @@ if (yearEl) {
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function playNote(file) {
-  try {
-    const audio = new Audio(`assets/${file}`);
-    audio.volume = 0.4;
-    audio.play().catch(() => {});
-  } catch (err) {}
-}
-
 const CONFETTI_COLORS = ["#B5EAD7", "#FDFD96", "#FADADD"];
 
 function fireConfettiFromElement(el) {
@@ -48,7 +40,6 @@ function fireConfettiOnce(el, storageKey) {
    ========================================================= */
 (function greetingCards() {
   const cards = Array.from(document.querySelectorAll(".greeting-card"));
-  const NOTES = ["e.wav", "d.wav", "c.wav"];
   cards.forEach((card, index) => {
     card.addEventListener("click", (event) => {
       event.preventDefault();
@@ -57,7 +48,6 @@ function fireConfettiOnce(el, storageKey) {
       card.classList.toggle("is-flipped", willFlip);
       card.setAttribute("aria-pressed", String(willFlip));
       if (willFlip) {
-        playNote(NOTES[index] || "c.wav");
         fireConfettiOnce(card, `patiConfettiGreeting${index}`);
       }
     });
@@ -69,13 +59,11 @@ function fireConfettiOnce(el, storageKey) {
    ========================================================= */
 (function achievementEnvelopes() {
   const envelopes = Array.from(document.querySelectorAll(".achievement-envelope"));
-  const NOTES = ["c.wav", "d.wav", "e.wav"];
   envelopes.forEach((envelope, index) => {
     envelope.addEventListener("click", () => {
       const isFlipped = envelope.classList.toggle("is-flipped");
       envelope.setAttribute("aria-pressed", String(isFlipped));
       if (isFlipped) {
-        playNote(NOTES[index] || "c.wav");
         fireConfettiOnce(envelope, `patiConfettiAchievement${index}`);
       }
     });
