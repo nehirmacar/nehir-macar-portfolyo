@@ -473,7 +473,6 @@ body::before {
   background: transparent;
   cursor: pointer;
   perspective: 1000px;
-  -webkit-tap-highlight-color: transparent;
   --card-rotation: 0deg;
   --card-translate-x: 0px;
   --card-translate-y: 0px;
@@ -913,21 +912,6 @@ body::before {
     padding: 0.8rem 0.9rem;
   }
 
-  .greeting-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.9rem;
-  }
-
-  .greeting-card {
-    min-height: 160px;
-  }
-
-  /* Üçüncü kart (Bonjour) tek başına kalınca üstteki iki kartın ortasına hizalansın */
-  .greeting-card:last-child {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: calc(50% - 0.45rem);
-  }
 }
 
 /* Çok dar ekranlarda menü öğelerinin taşmasını önlemek için alt satıra sar */
