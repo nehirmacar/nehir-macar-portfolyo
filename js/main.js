@@ -309,7 +309,16 @@ function createPetal() {
   function update() {
     ticking = false;
     const scrollY = window.scrollY;
-    const progress = Math.min(1, Math.max(0, (scrollY - trackStart) / trackLength));
+    let progress = Math.min(1, Math.max(0, (scrollY - trackStart) / trackLength));
+
+    // Sayfanın altındaki footer/widget alanı görünür yükseklikten kısa olabilir,
+    // bu yüzden gerçek scroll sonu her zaman trackEnd'e ulaşamayabilir.
+    // Sayfanın en altına gelindiğinde dolumu her zaman %100 yap.
+    const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollY >= maxScrollY - 1) {
+      progress = 1;
+    }
+
     const progressPercent = progress * 100;
     fill.style.height = `${progressPercent}%`;
 
@@ -321,7 +330,7 @@ function createPetal() {
         activeIndex = index;
       }
     });
-    if (activeIndex === -1 && scrollY >= trackStart + trackLength) {
+    if (activeIndex === -1 && (scrollY >= trackStart + trackLength || progress === 1)) {
       activeIndex = sections.length - 1;
     }
 
