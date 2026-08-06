@@ -24,6 +24,14 @@
     } catch (err) {}
   }
 
+  function playPop() {
+    try {
+      const audio = new Audio("assets/pop.wav");
+      audio.volume = 0.4;
+      audio.play().catch(() => {});
+    } catch (err) {}
+  }
+
   function openPanel() {
     clearTimeout(closeTimeoutId);
     panel.hidden = false;
@@ -98,6 +106,7 @@
 
       thinkingBubble.remove();
       addMessage(data.reply, "bot");
+      playPop();
     } catch (err) {
       thinkingBubble.remove();
       errorEl.textContent = "Şu anda cevap oluşturulamıyor, lütfen birkaç saniye sonra tekrar dene.";
