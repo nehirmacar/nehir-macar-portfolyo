@@ -27,7 +27,7 @@
   function playPop() {
     try {
       const audio = new Audio("assets/pop.wav");
-      audio.volume = 0.4;
+      audio.volume = 0.7;
       audio.play().catch(() => {});
     } catch (err) {}
   }
