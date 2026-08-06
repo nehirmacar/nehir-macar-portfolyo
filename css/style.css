@@ -473,6 +473,7 @@ body::before {
   background: transparent;
   cursor: pointer;
   perspective: 1000px;
+  -webkit-tap-highlight-color: transparent;
   --card-rotation: 0deg;
   --card-translate-x: 0px;
   --card-translate-y: 0px;
