@@ -853,14 +853,14 @@ body::before {
   bottom: 78px;
   width: max-content;
   white-space: nowrap;
-  padding: 0.7rem 1.1rem;
+  padding: 0.95rem 1.5rem;
   background: #fce4ec;
   border: 1px solid #f6c9dc;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
   color: #1a1a1a;
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 1.05rem;
   line-height: 1.4;
   opacity: 0;
   transform: translateY(8px) scale(0.96);
