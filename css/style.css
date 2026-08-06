@@ -688,15 +688,21 @@ body::before {
     animation: heroNameReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* Sitedeki diğer ana metin öğeleri: başlıklar, bölüm başlıkları, paragraflar, kart içerikleri */
+  /* Sitedeki diğer ana metin öğeleri: başlıklar, bölüm başlıkları, paragraflar.
+     Not: 3B flip kartların (achievement-envelope / greeting-card) içindeki
+     metinler kasıtlı olarak dışarıda bırakıldı — backface-visibility + rotateY
+     ile birleşince mobilde diğer kartların siyaha dönmesine (GPU compositing
+     hatası) yol açıyordu. */
   main h2,
-  main h3,
-  main p,
+  .section__eyebrow,
+  .section__lead,
+  .hero__tagline,
+  .about__bio p,
+  .about__learning h3,
+  .about__learning p,
+  .contact-card__email,
   .link-card strong,
-  .link-card__sub,
-  .greeting-card__word,
-  .greeting-card__small,
-  .greeting-card__tiny {
+  .link-card__sub {
     animation: heroNameReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
