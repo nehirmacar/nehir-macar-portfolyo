@@ -758,7 +758,6 @@ body::before {
 
 /* ---------- Sol kenar timeline (bölüm ilerleme çizgisi) ---------- */
 .timeline {
-  display: none;
   position: fixed;
   left: 2rem;
   top: 50%;
@@ -769,9 +768,25 @@ body::before {
   pointer-events: none;
 }
 
-@media (min-width: 1200px) {
+/* Tabletlerde (iPad dahil) daralt ve içerik dolgusunun (1.5rem) içinde kalacak
+   şekilde kenara yaklaştır, taşma/örtüşme olmasın. */
+@media (max-width: 1199px) {
   .timeline {
-    display: block;
+    left: 0.6rem;
+    width: 16px;
+    height: min(46vh, 380px);
+  }
+
+  .timeline__dot {
+    width: 9px;
+    height: 9px;
+  }
+}
+
+/* Telefonlarda tamamen gizle */
+@media (max-width: 640px) {
+  .timeline {
+    display: none;
   }
 }
 
@@ -874,6 +889,30 @@ body::before {
 
   .section {
     padding: 3.5rem 1.25rem;
+  }
+
+  .achievements__grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+  }
+
+  .achievement-envelope {
+    min-height: 190px;
+    border-radius: 16px;
+  }
+
+  .achievement-envelope__paper-inner {
+    min-height: 150px;
+    padding: 0.8rem 0.9rem;
+  }
+
+  .greeting-cards {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.9rem;
+  }
+
+  .greeting-card {
+    min-height: 160px;
   }
 }
 
