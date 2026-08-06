@@ -744,7 +744,9 @@ body::before {
   }
 
   .pati__panel,
-  .pati__toggle {
+  .pati__toggle,
+  .pati__greeting,
+  .pati__greeting.is-visible {
     transition: none;
   }
 }
@@ -814,6 +816,53 @@ body::before {
 
 .pati__toggle:hover {
   transform: translateY(-2px) scale(1.05);
+}
+
+.pati__greeting {
+  position: absolute;
+  right: 0;
+  bottom: 72px;
+  max-width: 200px;
+  padding: 0.65rem 0.95rem;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transform-origin: bottom right;
+  /* Kapanış: hızlı ve düz bir soluklaşma */
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 1, 1),
+    transform 0.28s cubic-bezier(0.4, 0, 1, 1);
+}
+
+.pati__greeting[hidden] {
+  display: none;
+}
+
+.pati__greeting.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  /* Açılış: hafif "pop" hissi veren yumuşak taşmalı eğri */
+  transition: opacity 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pati__greeting::after {
+  content: "";
+  position: absolute;
+  right: 22px;
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-bg-alt);
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  transform: rotate(45deg);
 }
 
 .pati__panel {
@@ -1039,6 +1088,11 @@ body::before {
     width: 54px;
     height: 54px;
     font-size: 1.4rem;
+  }
+
+  .pati__greeting {
+    bottom: 66px;
+    max-width: min(200px, calc(100vw - 3rem));
   }
 
   .pati__panel {

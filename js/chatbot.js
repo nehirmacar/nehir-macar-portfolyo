@@ -111,4 +111,30 @@
       sendMessage(button.dataset.question || button.textContent);
     });
   }
+
+  // Karşılama balonu — oturum başına bir kere, sayfa açıldıktan 3sn sonra belirir,
+  // 5sn görünür kaldıktan sonra kendiliğinden kapanır.
+  const greeting = document.getElementById("pati-greeting");
+  if (greeting && !sessionStorage.getItem("patiGreetingShown")) {
+    let greetingHideTimeoutId = null;
+    let greetingRemoveTimeoutId = null;
+
+    const dismissGreeting = () => {
+      clearTimeout(greetingHideTimeoutId);
+      clearTimeout(greetingRemoveTimeoutId);
+      greeting.classList.remove("is-visible");
+      greetingRemoveTimeoutId = setTimeout(() => {
+        greeting.hidden = true;
+      }, 280);
+    };
+
+    setTimeout(() => {
+      sessionStorage.setItem("patiGreetingShown", "1");
+      greeting.hidden = false;
+      requestAnimationFrame(() => greeting.classList.add("is-visible"));
+      greetingHideTimeoutId = setTimeout(dismissGreeting, 5000);
+    }, 3000);
+
+    toggle.addEventListener("click", dismissGreeting);
+  }
 })();
