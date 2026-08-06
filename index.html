@@ -9,11 +9,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260806f" />
+  <link rel="stylesheet" href="css/style.css?v=20260806g" />
 </head>
 <body>
   <!-- Doğa animasyonu: arka planda süzülen sakura yaprakları (js/main.js tarafından çizilir) -->
   <canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+  <!-- ================= SOL KENAR TIMELINE ================= -->
+  <div class="timeline" id="timeline" aria-hidden="true">
+    <div class="timeline__track">
+      <div class="timeline__fill" id="timeline-fill"></div>
+    </div>
+    <ul class="timeline__dots">
+      <li class="timeline__dot" data-section="hakkimda"></li>
+      <li class="timeline__dot" data-section="basarilar"></li>
+      <li class="timeline__dot" data-section="baglantilar"></li>
+      <li class="timeline__dot" data-section="ozel-ozellik"></li>
+      <li class="timeline__dot" data-section="iletisim"></li>
+    </ul>
+  </div>
 
   <header class="nav">
     <a class="nav__brand" href="#top">Nehir Macar</a>
@@ -314,7 +328,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-  <script src="js/main.js?v=20260806c"></script>
+  <script src="js/main.js?v=20260806d"></script>
   <script src="js/chatbot.js?v=20260806g"></script>
 </body>
 </html>

@@ -275,3 +275,76 @@ function createPetal() {
 (function doveAnimation() {
   return;
 })();
+
+/* =========================================================
+   4) Sol kenar timeline: kaydırma ilerlemesi ve aktif bölüm noktası
+   ========================================================= */
+(function sectionTimeline() {
+  const fill = document.getElementById("timeline-fill");
+  const dotEls = Array.from(document.querySelectorAll(".timeline__dot"));
+  if (!fill || !dotEls.length) return;
+
+  const sections = dotEls
+    .map((dot) => document.getElementById(dot.dataset.section))
+    .filter(Boolean);
+  if (sections.length !== dotEls.length) return;
+
+  let trackStart = 0;
+  let trackLength = 1;
+  let dotPercents = [];
+  let ticking = false;
+
+  function measure() {
+    const firstTop = sections[0].getBoundingClientRect().top + window.scrollY;
+    const lastBottom =
+      sections[sections.length - 1].getBoundingClientRect().bottom + window.scrollY;
+    trackStart = firstTop;
+    trackLength = Math.max(lastBottom - firstTop, 1);
+    dotPercents = sections.map((section) => {
+      const top = section.getBoundingClientRect().top + window.scrollY;
+      return Math.min(100, Math.max(0, ((top - trackStart) / trackLength) * 100));
+    });
+  }
+
+  function update() {
+    ticking = false;
+    const scrollY = window.scrollY;
+    const progress = Math.min(1, Math.max(0, (scrollY - trackStart) / trackLength));
+    const progressPercent = progress * 100;
+    fill.style.height = `${progressPercent}%`;
+
+    const viewportLine = window.innerHeight * 0.4;
+    let activeIndex = -1;
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= viewportLine && rect.bottom > viewportLine) {
+        activeIndex = index;
+      }
+    });
+    if (activeIndex === -1 && scrollY >= trackStart + trackLength) {
+      activeIndex = sections.length - 1;
+    }
+
+    dotEls.forEach((dot, index) => {
+      dot.classList.toggle("is-passed", progressPercent >= dotPercents[index] - 0.5);
+      dot.classList.toggle("is-active", index === activeIndex);
+    });
+  }
+
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  function refresh() {
+    measure();
+    update();
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", refresh);
+  window.addEventListener("load", refresh);
+  refresh();
+})();
