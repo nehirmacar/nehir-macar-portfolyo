@@ -19,7 +19,7 @@
   function playMeow() {
     try {
       const audio = new Audio("assets/meow.wav");
-      audio.volume = 0.4;
+      audio.volume = 0.25;
       audio.play().catch(() => {});
     } catch (err) {}
   }
