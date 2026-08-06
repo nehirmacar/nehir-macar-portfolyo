@@ -671,6 +671,23 @@ body::before {
   }
 }
 
+@keyframes heroNameReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__name {
+    animation: heroNameReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
 .hero__tagline {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   color: var(--color-text-light);
