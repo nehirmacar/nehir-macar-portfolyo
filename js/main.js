@@ -16,6 +16,33 @@ function playNote(file) {
   } catch (err) {}
 }
 
+const CONFETTI_COLORS = ["#B5EAD7", "#FDFD96", "#FADADD"];
+
+function fireConfettiFromElement(el) {
+  if (typeof confetti !== "function") return;
+  try {
+    const rect = el.getBoundingClientRect();
+    const originX = (rect.left + rect.width / 2) / window.innerWidth;
+    const originY = (rect.top + rect.height / 2) / window.innerHeight;
+    confetti({
+      particleCount: 50,
+      spread: 55,
+      startVelocity: 25,
+      gravity: 1,
+      ticks: 120,
+      scalar: 0.9,
+      colors: CONFETTI_COLORS,
+      origin: { x: originX, y: originY },
+    });
+  } catch (err) {}
+}
+
+function fireConfettiOnce(el, storageKey) {
+  if (sessionStorage.getItem(storageKey)) return;
+  sessionStorage.setItem(storageKey, "1");
+  fireConfettiFromElement(el);
+}
+
 /* =========================================================
    1) Kartların tıklamayla dönmesi
    ========================================================= */
@@ -29,7 +56,10 @@ function playNote(file) {
       const willFlip = !isFlipped;
       card.classList.toggle("is-flipped", willFlip);
       card.setAttribute("aria-pressed", String(willFlip));
-      if (willFlip) playNote(NOTES[index] || "c.wav");
+      if (willFlip) {
+        playNote(NOTES[index] || "c.wav");
+        fireConfettiOnce(card, `patiConfettiGreeting${index}`);
+      }
     });
   });
 })();
@@ -44,7 +74,10 @@ function playNote(file) {
     envelope.addEventListener("click", () => {
       const isFlipped = envelope.classList.toggle("is-flipped");
       envelope.setAttribute("aria-pressed", String(isFlipped));
-      if (isFlipped) playNote(NOTES[index] || "c.wav");
+      if (isFlipped) {
+        playNote(NOTES[index] || "c.wav");
+        fireConfettiOnce(envelope, `patiConfettiAchievement${index}`);
+      }
     });
   });
 })();
