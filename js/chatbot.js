@@ -89,7 +89,8 @@
     input.value = "";
     setLoading(true);
 
-    const thinkingBubble = addMessage("Pati düşünüyor...", "bot", "pati__message--loading");
+    const thinkingText = window.SITE_I18N ? window.SITE_I18N.t("patiThinking") : "Pati düşünüyor...";
+    const thinkingBubble = addMessage(thinkingText, "bot", "pati__message--loading");
 
     try {
       const response = await fetch("/api/chat", {
@@ -109,7 +110,9 @@
       playPop();
     } catch (err) {
       thinkingBubble.remove();
-      errorEl.textContent = "Şu anda cevap oluşturulamıyor, lütfen birkaç saniye sonra tekrar dene.";
+      errorEl.textContent = window.SITE_I18N
+        ? window.SITE_I18N.t("patiError")
+        : "Şu anda cevap oluşturulamıyor, lütfen birkaç saniye sonra tekrar dene.";
       errorEl.hidden = false;
     } finally {
       setLoading(false);

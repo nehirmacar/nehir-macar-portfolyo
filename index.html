@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nehir Macar</title>
-  <meta name="description" content="Nehir Macar'ın kişisel tanıtım sitesi — piyano, tenis ve proje üretmeye tutkun bir lise öğrencisi." />
+  <meta name="description" content="Nehir Macar'ın kişisel tanıtım sitesi — piyano, tenis ve proje üretmeye tutkun bir lise öğrencisi." data-i18n-attr-content="metaDescription" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260806l" />
+  <link rel="stylesheet" href="css/style.css?v=20260807a" />
 </head>
 <body>
   <!-- Doğa animasyonu: arka planda süzülen sakura yaprakları (js/main.js tarafından çizilir) -->
@@ -31,12 +31,17 @@
 
   <header class="nav">
     <a class="nav__brand" href="#top">Nehir Macar</a>
-    <nav class="nav__links" aria-label="Ana site menüsü">
-      <a href="#hakkimda">Hakkımda</a>
-      <a href="#basarilar">Başarılar</a>
-      <a href="#baglantilar">Bağlantılar</a>
-      <a href="#iletisim">İletişim</a>
+    <nav class="nav__links" aria-label="Ana site menüsü" data-i18n-attr-aria-label="navAriaLabel">
+      <a href="#hakkimda" data-i18n="navAbout">Hakkımda</a>
+      <a href="#basarilar" data-i18n="navAchievements">Başarılar</a>
+      <a href="#baglantilar" data-i18n="navLinks">Bağlantılar</a>
+      <a href="#iletisim" data-i18n="navContact">İletişim</a>
     </nav>
+    <div class="lang-switch" role="group" aria-label="Dil seçimi" data-i18n-attr-aria-label="langSwitchAriaLabel">
+      <button type="button" class="lang-switch__btn" data-lang="tr">TR</button>
+      <button type="button" class="lang-switch__btn" data-lang="en">EN</button>
+      <button type="button" class="lang-switch__btn" data-lang="fr">FR</button>
+    </div>
   </header>
 
   <main id="top">
@@ -44,51 +49,51 @@
     <!-- ================= HERO / KARŞILAMA ================= -->
     <section class="hero" id="hero">
       <div class="hero__text">
-        <p class="section__eyebrow">Merhaba, ben</p>
+        <p class="section__eyebrow" data-i18n="heroEyebrow">Merhaba, ben</p>
         <h1 class="hero__name">Nehir Macar</h1>
-        <p class="hero__tagline">
+        <p class="hero__tagline" data-i18n="heroTagline">
           Piyano çalmayı, kortta top koşturmayı ve elimden geldiğince yeni
           projeler üretmeyi seven bir lise öğrencisiyim.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="#basarilar">Projelerime bak ↓</a>
-          <a class="btn btn--secondary" href="#iletisim">Bana ulaş</a>
+          <a class="btn btn--primary" href="#basarilar" data-i18n="heroBtnProjects">Projelerime bak ↓</a>
+          <a class="btn btn--secondary" href="#iletisim" data-i18n="heroBtnContact">Bana ulaş</a>
         </div>
       </div>
     </section>
 
     <!-- ================= HAKKIMDA ================= -->
     <section class="section about" id="hakkimda">
-      <p class="section__eyebrow">Hakkımda</p>
-      <h2 class="section__title">Kısaca ben</h2>
+      <p class="section__eyebrow" data-i18n="aboutEyebrow">Hakkımda</p>
+      <h2 class="section__title" data-i18n="aboutTitle">Kısaca ben</h2>
 
       <div class="about__grid">
         <div class="about__bio">
-          <p>
+          <p data-i18n-html="aboutParagraph1">
             İstanbul'da <strong>Saint Joseph Fransız Lisesi</strong>'nde
             öğrenciyim. Piyano çalmayı, tenis oynamayı ve aklıma gelen
             fikirleri gerçek projelere dönüştürmeyi seviyorum.
           </p>
-          <p>
+          <p data-i18n="aboutParagraph2">
             İngilizce ve Fransızca konuşuyorum; farklı dillerde düşünmek
             bana olaylara farklı açılardan bakma alışkanlığı kazandırdı.
           </p>
 
 <ul class="about__facts" aria-label="Kısa bilgiler">
-        <li>Saint Joseph Fransız Lisesi — İstanbul</li>
-        <li>İngilizce &amp; Fransızca</li>
+        <li data-i18n="aboutFact1">Saint Joseph Fransız Lisesi — İstanbul</li>
+        <li data-i18n="aboutFact2">İngilizce &amp; Fransızca</li>
       </ul>
 
       <ul class="about__tags" aria-label="İlgi alanlarım">
-        <li>Piyano</li>
-        <li>Tenis</li>
-        <li>Proje Üretmek</li>
+        <li data-i18n="aboutTagPiano">Piyano</li>
+        <li data-i18n="aboutTagTennis">Tenis</li>
+        <li data-i18n="aboutTagProjects">Proje Üretmek</li>
       </ul>
         </div>
 
         <div class="about__learning card">
-          <h3>Şu an öğrendiklerim</h3>
-          <p>
+          <h3 data-i18n="aboutLearningTitle">Şu an öğrendiklerim</h3>
+          <p data-i18n="aboutLearningParagraph">
             Web geliştirme ve yapay zeka araçlarıyla küçük kişisel projeler
             üretmeyi öğreniyorum — bu site de bunlardan biri.
           </p>
@@ -100,54 +105,54 @@
     <!-- Aşağıdaki 3 kart yer tutucudur — başlığı, açıklamayı ve
          linki kendi başarılarınla (ödül, proje, sınav vb.) değiştir. -->
     <section class="section" id="basarilar">
-      <p class="section__eyebrow">Başarılar</p>
-      <h2 class="section__title">Bugüne kadar biriktirdiklerim</h2>
+      <p class="section__eyebrow" data-i18n="achievementsEyebrow">Başarılar</p>
+      <h2 class="section__title" data-i18n="achievementsTitle">Bugüne kadar biriktirdiklerim</h2>
       <div class="achievements__grid">
-        <article class="achievement-envelope" aria-label="Saint-Joseph Fransız Lisesi'ni kazanmam">
+        <article class="achievement-envelope" aria-label="Saint-Joseph Fransız Lisesi'ni kazanmam" data-i18n-attr-aria-label="achievement1Title">
           <div class="achievement-envelope__inner">
             <div class="achievement-envelope__face achievement-envelope__face--front" aria-hidden="true">
               <span class="achievement-envelope__star">✦</span>
-              <span class="achievement-envelope__hint">Açmak için tıkla</span>
+              <span class="achievement-envelope__hint" data-i18n="clickToOpen">Açmak için tıkla</span>
             </div>
             <div class="achievement-envelope__face achievement-envelope__face--back">
               <div class="achievement-envelope__paper">
                 <div class="achievement-envelope__paper-inner">
-                  <h3>Saint-Joseph Fransız Lisesi'ni kazanmam</h3>
-                  <p>Köklü bir Fransız lisesine kabul edildim.</p>
+                  <h3 data-i18n="achievement1Title">Saint-Joseph Fransız Lisesi'ni kazanmam</h3>
+                  <p data-i18n="achievement1Desc">Köklü bir Fransız lisesine kabul edildim.</p>
                 </div>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="achievement-envelope" aria-label="Exposure AI'a girmem">
+        <article class="achievement-envelope" aria-label="Exposure AI'a girmem" data-i18n-attr-aria-label="achievement2Title">
           <div class="achievement-envelope__inner">
             <div class="achievement-envelope__face achievement-envelope__face--front" aria-hidden="true">
               <span class="achievement-envelope__star">✦</span>
-              <span class="achievement-envelope__hint">Açmak için tıkla</span>
+              <span class="achievement-envelope__hint" data-i18n="clickToOpen">Açmak için tıkla</span>
             </div>
             <div class="achievement-envelope__face achievement-envelope__face--back">
               <div class="achievement-envelope__paper">
                 <div class="achievement-envelope__paper-inner">
-                  <h3>Exposure AI'a girmem</h3>
-                  <p>Yazılım ve yapay zeka projeleri geliştirdiğim programa seçildim.</p>
+                  <h3 data-i18n="achievement2Title">Exposure AI'a girmem</h3>
+                  <p data-i18n="achievement2Desc">Yazılım ve yapay zeka projeleri geliştirdiğim programa seçildim.</p>
                 </div>
               </div>
             </div>
           </div>
         </article>
 
-        <article class="achievement-envelope" aria-label="Resim yarışmasında derece">
+        <article class="achievement-envelope" aria-label="Resim yarışmasında derece" data-i18n-attr-aria-label="achievement3Title">
           <div class="achievement-envelope__inner">
             <div class="achievement-envelope__face achievement-envelope__face--front" aria-hidden="true">
               <span class="achievement-envelope__star">✦</span>
-              <span class="achievement-envelope__hint">Açmak için tıkla</span>
+              <span class="achievement-envelope__hint" data-i18n="clickToOpen">Açmak için tıkla</span>
             </div>
             <div class="achievement-envelope__face achievement-envelope__face--back">
               <div class="achievement-envelope__paper">
                 <div class="achievement-envelope__paper-inner">
-                  <h3>Resim yarışmasında derece</h3>
-                  <p>Okulumun düzenlediği resim yarışmasında derece kazandım.</p>
+                  <h3 data-i18n="achievement3Title">Resim yarışmasında derece</h3>
+                  <p data-i18n="achievement3Desc">Okulumun düzenlediği resim yarışmasında derece kazandım.</p>
                 </div>
               </div>
             </div>
@@ -159,21 +164,21 @@
     <!-- ================= BAĞLANTILAR ================= -->
     <!-- Aşağıdaki href değerlerini kendi profil linklerinle değiştir. -->
     <section class="section" id="baglantilar">
-      <p class="section__eyebrow">Bağlantılar</p>
-      <h2 class="section__title">Beni buradan da bulabilirsin</h2>
+      <p class="section__eyebrow" data-i18n="linksEyebrow">Bağlantılar</p>
+      <h2 class="section__title" data-i18n="linksTitle">Beni buradan da bulabilirsin</h2>
 
       <div class="links__grid">
         <a class="link-card" href="https://github.com/nehirmacar" target="_blank" rel="noopener noreferrer">
           <span>
             <strong>GitHub</strong>
-            <span class="link-card__sub">Kod ve projelerim</span>
+            <span class="link-card__sub" data-i18n="githubSub">Kod ve projelerim</span>
           </span>
         </a>
  <a class="link-card" href="https://www.linkedin.com/in/nehir-macar-5b9bba3a5" target="_blank" rel="noopener noreferrer">
-       
+
           <span>
             <strong>LinkedIn</strong>
-            <span class="link-card__sub">Profesyonel profilim</span>
+            <span class="link-card__sub" data-i18n="linkedinSub">Profesyonel profilim</span>
           </span>
         </a>
       </div>
@@ -181,47 +186,47 @@
 
     <!-- ================= ÖZEL ÖZELLİK: ÇOK DİLLİ KARŞILAMA ================= -->
     <section class="section feature" id="ozel-ozellik">
-      <p class="section__eyebrow">Bana özel bir dokunuş</p>
-      <h2 class="section__title">Üç dilde merhaba demeyi öğrenin!</h2>
-      <div class="greeting-cards" aria-label="Üç dilde merhaba kartları">
-        <button class="greeting-card" type="button" aria-label="Türkçe Merhaba kartı">
+      <p class="section__eyebrow" data-i18n="featureEyebrow">Bana özel bir dokunuş</p>
+      <h2 class="section__title" data-i18n="featureTitle">Üç dilde merhaba demeyi öğrenin!</h2>
+      <div class="greeting-cards" aria-label="Üç dilde merhaba kartları" data-i18n-attr-aria-label="greetingCardsAriaLabel">
+        <button class="greeting-card" type="button" aria-label="Türkçe Merhaba kartı" data-i18n-attr-aria-label="greetingCard1AriaLabel">
           <span class="greeting-card__inner">
             <span class="greeting-card__face greeting-card__face--front">
               <span class="greeting-card__heart">♡</span>
-              <span class="greeting-card__hint">Açmak için tıkla</span>
+              <span class="greeting-card__hint" data-i18n="clickToOpen">Açmak için tıkla</span>
             </span>
             <span class="greeting-card__face greeting-card__face--back">
               <span class="greeting-card__word">Merhaba!</span>
               <span class="greeting-card__small">Türkçe</span>
-              <span class="greeting-card__tiny">Türkçe, ana dilimdir.</span>
+              <span class="greeting-card__tiny" data-i18n="greetingCard1Desc">Türkçe, ana dilimdir.</span>
             </span>
           </span>
         </button>
 
-        <button class="greeting-card" type="button" aria-label="İngilizce Hello kartı">
+        <button class="greeting-card" type="button" aria-label="İngilizce Hello kartı" data-i18n-attr-aria-label="greetingCard2AriaLabel">
           <span class="greeting-card__inner">
             <span class="greeting-card__face greeting-card__face--front">
               <span class="greeting-card__heart">♡</span>
-              <span class="greeting-card__hint">Açmak için tıkla</span>
+              <span class="greeting-card__hint" data-i18n="clickToOpen">Açmak için tıkla</span>
             </span>
             <span class="greeting-card__face greeting-card__face--back">
               <span class="greeting-card__word">Hello!</span>
               <span class="greeting-card__small">English</span>
-              <span class="greeting-card__tiny">Konuşurken en çok eğlendiğim dil.</span>
+              <span class="greeting-card__tiny" data-i18n="greetingCard2Desc">Konuşurken en çok eğlendiğim dil.</span>
             </span>
           </span>
         </button>
 
-        <button class="greeting-card" type="button" aria-label="Fransızca Bonjour kartı">
+        <button class="greeting-card" type="button" aria-label="Fransızca Bonjour kartı" data-i18n-attr-aria-label="greetingCard3AriaLabel">
           <span class="greeting-card__inner">
             <span class="greeting-card__face greeting-card__face--front">
               <span class="greeting-card__heart">♡</span>
-              <span class="greeting-card__hint">Açmak için tıkla</span>
+              <span class="greeting-card__hint" data-i18n="clickToOpen">Açmak için tıkla</span>
             </span>
             <span class="greeting-card__face greeting-card__face--back">
               <span class="greeting-card__word">Bonjour!</span>
               <span class="greeting-card__small">Français</span>
-              <span class="greeting-card__tiny">Okulda<br />kullandığım akademik dil.</span>
+              <span class="greeting-card__tiny" data-i18n="greetingCard3Desc">Okulda<br />kullandığım akademik dil.</span>
             </span>
           </span>
         </button>
@@ -230,9 +235,9 @@
 
     <!-- ================= İLETİŞİM ================= -->
     <section class="section" id="iletisim">
-      <p class="section__eyebrow">İletişim</p>
-      <h2 class="section__title">Sohbet etmek ister misin?</h2>
-      <p class="section__lead">
+      <p class="section__eyebrow" data-i18n="contactEyebrow">İletişim</p>
+      <h2 class="section__title" data-i18n="contactTitle">Sohbet etmek ister misin?</h2>
+      <p class="section__lead" data-i18n="contactLead">
         Bir proje fikri, ortak bir ilgi alanı ya da sadece merhaba demek
         istiyorsan, bana e-posta atman yeterli.
       </p>
@@ -242,6 +247,8 @@
         <a
           class="btn btn--primary"
           href="mailto:nehir.macar@sj.k12.tr?subject=Merhaba%20Nehir!"
+          data-i18n="contactEmailButton"
+          data-i18n-mailto="true"
         >
           ✉️ Bana e-posta gönder
         </a>
@@ -251,12 +258,12 @@
   </main>
 
   <footer class="footer">
-    <p>&copy; 2026 Nehir Macar · v1.2.0 · 6 Ağustos 2026</p>
+    <p data-i18n="footerText">&copy; 2026 Nehir Macar · v1.2.0 · 6 Ağustos 2026</p>
   </footer>
 
   <!-- ================= PATİ CHATBOT ================= -->
   <div id="pati-chatbot" class="pati">
-    <div id="pati-greeting" class="pati__greeting" aria-hidden="true" hidden>
+    <div id="pati-greeting" class="pati__greeting" aria-hidden="true" hidden data-i18n="patiGreetingBubble">
       Merhaba, ben Pati! 🐱
     </div>
 
@@ -267,6 +274,7 @@
       aria-expanded="false"
       aria-controls="pati-panel"
       aria-label="Pati ile sohbet et"
+      data-i18n-attr-aria-label="patiToggleAriaLabel"
     >
       <span aria-hidden="true">🐱</span>
     </button>
@@ -284,27 +292,27 @@
           <span class="pati__avatar" aria-hidden="true">🐾</span>
           <div>
             <p id="pati-title" class="pati__title">Pati</p>
-            <p class="pati__subtitle">Nehir'in kedi asistanı</p>
+            <p class="pati__subtitle" data-i18n="patiSubtitle">Nehir'in kedi asistanı</p>
           </div>
         </div>
-        <button id="pati-close" class="pati__close" type="button" aria-label="Sohbeti kapat">
+        <button id="pati-close" class="pati__close" type="button" aria-label="Sohbeti kapat" data-i18n-attr-aria-label="patiCloseAriaLabel">
           ✕
         </button>
       </header>
 
       <div id="pati-messages" class="pati__messages" aria-live="polite">
-        <div class="pati__message pati__message--bot">
+        <div class="pati__message pati__message--bot" data-i18n="patiFirstMessage">
           Miyav! Ben Pati, Nehir'i tanıtan kedi asistanıyım. Onun projeleri, ilgi alanları,
           başarıları ve hedefleri hakkında bana soru sorabilirsin. 🐱
         </div>
         <div id="pati-suggestions" class="pati__suggestions">
-          <button class="pati__suggestion" type="button" data-question="En büyük başarısı nedir?">
+          <button class="pati__suggestion" type="button" data-question="En büyük başarısı nedir?" data-i18n="patiSuggestion1" data-i18n-question="patiSuggestion1">
             En büyük başarısı nedir?
           </button>
-          <button class="pati__suggestion" type="button" data-question="Hangi projeleri yaptı?">
+          <button class="pati__suggestion" type="button" data-question="Hangi projeleri yaptı?" data-i18n="patiSuggestion2" data-i18n-question="patiSuggestion2">
             Hangi projeleri yaptı?
           </button>
-          <button class="pati__suggestion" type="button" data-question="Gelecek hedefleri nelerdir?">
+          <button class="pati__suggestion" type="button" data-question="Gelecek hedefleri nelerdir?" data-i18n="patiSuggestion3" data-i18n-question="patiSuggestion3">
             Gelecek hedefleri nelerdir?
           </button>
         </div>
@@ -313,7 +321,7 @@
       <p id="pati-error" class="pati__error" role="alert" hidden></p>
 
       <form id="pati-form" class="pati__form">
-        <label class="visually-hidden" for="pati-input">Pati'ye bir soru yaz</label>
+        <label class="visually-hidden" for="pati-input" data-i18n="patiInputLabel">Pati'ye bir soru yaz</label>
         <input
           id="pati-input"
           class="pati__input"
@@ -321,14 +329,16 @@
           placeholder="Bir şey sor..."
           autocomplete="off"
           maxlength="500"
+          data-i18n-attr-placeholder="patiInputPlaceholder"
         />
-        <button id="pati-send" class="pati__send" type="submit" aria-label="Gönder">➤</button>
+        <button id="pati-send" class="pati__send" type="submit" aria-label="Gönder" data-i18n-attr-aria-label="patiSendAriaLabel">➤</button>
       </form>
     </section>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-  <script src="js/main.js?v=20260806e"></script>
-  <script src="js/chatbot.js?v=20260806g"></script>
+  <script src="js/i18n.js?v=20260807b"></script>
+  <script src="js/main.js?v=20260807a"></script>
+  <script src="js/chatbot.js?v=20260807a"></script>
 </body>
 </html>
