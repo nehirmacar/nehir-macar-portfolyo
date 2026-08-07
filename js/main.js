@@ -1,6 +1,23 @@
 // Nehir Macar — Kişisel Web Sitesi
 // 1) Footer yılı  2) Saatlik / çok dilli karşılama  3) Sakura yaprağı animasyonu
 
+/* =========================================================
+   0) URL'de hash yoksa sayfa daima en tepeden açılsın.
+   index.html <head>'indeki history.scrollRestoration = "manual"
+   satırını tamamlayan bir güvenlik katmanı: fontlar/görseller geç
+   yüklenip layout kaydırsa bile en tepeye sabitler.
+   ========================================================= */
+(function forceScrollTopOnLoad() {
+  function resetScrollIfNoHash() {
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }
+  resetScrollIfNoHash();
+  window.addEventListener("load", resetScrollIfNoHash);
+  window.addEventListener("pageshow", resetScrollIfNoHash);
+})();
+
 const yearEl = document.getElementById("year");
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
