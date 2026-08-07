@@ -93,10 +93,11 @@
     const thinkingBubble = addMessage(thinkingText, "bot", "pati__message--loading");
 
     try {
+      const lang = window.SITE_I18N ? window.SITE_I18N.getLang() : "tr";
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ message: text, lang }),
       });
 
       const data = await response.json().catch(() => ({}));
