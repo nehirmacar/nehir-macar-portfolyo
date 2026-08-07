@@ -10,11 +10,116 @@
   const form = document.getElementById("pati-form");
   const input = document.getElementById("pati-input");
   const sendBtn = document.getElementById("pati-send");
+  const ttsToggleBtn = document.getElementById("pati-tts-toggle");
+  const ttsIconEl = document.getElementById("pati-tts-icon");
 
   if (!toggle || !panel || !form || !input || !sendBtn) return;
 
   let isLoading = false;
   let closeTimeoutId = null;
+
+  /* =========================================================
+     Sesli okuma (Web Speech API) — yalnızca Pati'nin AI cevaplarını
+     seslendirir, kullanıcı mesajlarını değil. api/chat.js'e veya
+     mevcut sohbet akışına dokunmaz, cevap ekrana geldikten sonra
+     çalışan ek bir katmandır.
+     ========================================================= */
+  const ttsSupported =
+    typeof window !== "undefined" &&
+    "speechSynthesis" in window &&
+    typeof window.SpeechSynthesisUtterance === "function";
+
+  const TTS_STORAGE_KEY = "patiTtsEnabled";
+  const TTS_LANG_TAGS = { tr: "tr-TR", en: "en-US", fr: "fr-FR" };
+
+  let ttsEnabled = true;
+  if (ttsSupported) {
+    try {
+      const stored = localStorage.getItem(TTS_STORAGE_KEY);
+      if (stored === "0") ttsEnabled = false;
+    } catch (err) {}
+  }
+
+  let cachedVoices = [];
+  if (ttsSupported) {
+    const loadVoices = () => {
+      try {
+        cachedVoices = window.speechSynthesis.getVoices() || [];
+      } catch (err) {}
+    };
+    loadVoices();
+    if (typeof window.speechSynthesis.addEventListener === "function") {
+      window.speechSynthesis.addEventListener("voiceschanged", loadVoices);
+    }
+  }
+
+  function pickVoice(langPrefix) {
+    return (
+      cachedVoices.find((v) => v.lang && v.lang.toLowerCase() === TTS_LANG_TAGS[langPrefix]?.toLowerCase()) ||
+      cachedVoices.find((v) => v.lang && v.lang.toLowerCase().startsWith(langPrefix)) ||
+      null
+    );
+  }
+
+  function stripForSpeech(text) {
+    return text
+      .replace(/[\u{1F1E6}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}]/gu, "")
+      .replace(/\s{2,}/g, " ")
+      .trim();
+  }
+
+  function updateTtsButton() {
+    if (!ttsToggleBtn) return;
+    if (ttsIconEl) ttsIconEl.textContent = ttsEnabled ? "🔊" : "🔇";
+    ttsToggleBtn.setAttribute("aria-pressed", String(!ttsEnabled));
+    const label = window.SITE_I18N
+      ? window.SITE_I18N.t(ttsEnabled ? "patiMuteAriaLabel" : "patiUnmuteAriaLabel")
+      : ttsEnabled
+      ? "Sesi kapat"
+      : "Sesi aç";
+    ttsToggleBtn.setAttribute("aria-label", label);
+  }
+
+  function speakReply(text) {
+    if (!ttsSupported || !ttsEnabled) return;
+    const cleaned = stripForSpeech(text);
+    if (!cleaned) return;
+
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(cleaned);
+      const lang = window.SITE_I18N ? window.SITE_I18N.getLang() : "tr";
+      utterance.lang = TTS_LANG_TAGS[lang] || TTS_LANG_TAGS.tr;
+      const voice = pickVoice(lang);
+      if (voice) utterance.voice = voice;
+      utterance.onerror = () => {};
+      window.speechSynthesis.speak(utterance);
+    } catch (err) {}
+  }
+
+  if (ttsToggleBtn) {
+    if (!ttsSupported) {
+      ttsToggleBtn.hidden = true;
+    } else {
+      updateTtsButton();
+      ttsToggleBtn.addEventListener("click", () => {
+        ttsEnabled = !ttsEnabled;
+        try {
+          localStorage.setItem(TTS_STORAGE_KEY, ttsEnabled ? "1" : "0");
+        } catch (err) {}
+        if (!ttsEnabled) {
+          try {
+            window.speechSynthesis.cancel();
+          } catch (err) {}
+        }
+        updateTtsButton();
+      });
+
+      document.querySelectorAll(".lang-switch__btn").forEach((btn) => {
+        btn.addEventListener("click", updateTtsButton);
+      });
+    }
+  }
 
   function playMeow() {
     try {
@@ -109,6 +214,7 @@
       thinkingBubble.remove();
       addMessage(data.reply, "bot");
       playPop();
+      speakReply(data.reply);
     } catch (err) {
       thinkingBubble.remove();
       errorEl.textContent = window.SITE_I18N

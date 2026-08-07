@@ -1117,7 +1117,15 @@ body::before {
   opacity: 0.85;
 }
 
-.pati__close {
+.pati__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.pati__close,
+.pati__tts-toggle {
   width: 32px;
   height: 32px;
   flex-shrink: 0;
@@ -1133,8 +1141,13 @@ body::before {
   transition: background 0.15s ease;
 }
 
-.pati__close:hover {
+.pati__close:hover,
+.pati__tts-toggle:hover {
   background: rgba(255, 255, 255, 0.15);
+}
+
+.pati__tts-toggle[hidden] {
+  display: none;
 }
 
 .pati__messages {

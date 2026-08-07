@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20260807a" />
+  <link rel="stylesheet" href="css/style.css?v=20260807e" />
 </head>
 <body>
   <!-- Doğa animasyonu: arka planda süzülen sakura yaprakları (js/main.js tarafından çizilir) -->
@@ -304,9 +304,14 @@
             <p class="pati__subtitle" data-i18n="patiSubtitle">Nehir'in kedi asistanı</p>
           </div>
         </div>
-        <button id="pati-close" class="pati__close" type="button" aria-label="Sohbeti kapat" data-i18n-attr-aria-label="patiCloseAriaLabel">
-          ✕
-        </button>
+        <div class="pati__header-actions">
+          <button id="pati-tts-toggle" class="pati__tts-toggle" type="button" aria-pressed="false" aria-label="Sesi kapat">
+            <span id="pati-tts-icon" aria-hidden="true">🔊</span>
+          </button>
+          <button id="pati-close" class="pati__close" type="button" aria-label="Sohbeti kapat" data-i18n-attr-aria-label="patiCloseAriaLabel">
+            ✕
+          </button>
+        </div>
       </header>
 
       <div id="pati-messages" class="pati__messages" aria-live="polite">
@@ -346,8 +351,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-  <script src="js/i18n.js?v=20260807b"></script>
+  <script src="js/i18n.js?v=20260807e"></script>
   <script src="js/main.js?v=20260807d"></script>
-  <script src="js/chatbot.js?v=20260807c"></script>
+  <script src="js/chatbot.js?v=20260807e"></script>
 </body>
 </html>

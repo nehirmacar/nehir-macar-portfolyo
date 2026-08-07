@@ -83,6 +83,8 @@
       patiSendAriaLabel: "Gönder",
       patiThinking: "Pati düşünüyor...",
       patiError: "Şu anda cevap oluşturulamıyor, lütfen birkaç saniye sonra tekrar dene.",
+      patiMuteAriaLabel: "Sesi kapat",
+      patiUnmuteAriaLabel: "Sesi aç",
 
       footerText: "© 2026 Nehir Macar · v1.2.0 · 6 Ağustos 2026",
     },
@@ -164,6 +166,8 @@
       patiSendAriaLabel: "Send",
       patiThinking: "Pati is thinking...",
       patiError: "Can't generate a response right now, please try again in a few seconds.",
+      patiMuteAriaLabel: "Mute Pati's voice",
+      patiUnmuteAriaLabel: "Unmute Pati's voice",
 
       footerText: "© 2026 Nehir Macar · v1.2.0 · August 6, 2026",
     },
@@ -246,6 +250,8 @@
       patiSendAriaLabel: "Envoyer",
       patiThinking: "Pati réfléchit...",
       patiError: "Impossible de générer une réponse pour le moment, réessaie dans quelques secondes.",
+      patiMuteAriaLabel: "Couper le son de Pati",
+      patiUnmuteAriaLabel: "Activer le son de Pati",
 
       footerText: "© 2026 Nehir Macar · v1.2.0 · 6 août 2026",
     },
