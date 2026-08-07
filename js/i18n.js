@@ -86,7 +86,7 @@
       patiMuteAriaLabel: "Sesi kapat",
       patiUnmuteAriaLabel: "Sesi aç",
 
-      footerText: "© 2026 Nehir Macar · v1.2.0 · 6 Ağustos 2026",
+      footerText: "© 2026 Nehir Macar · v1.3.0 · 7 Ağustos 2026",
     },
 
     en: {
@@ -169,7 +169,7 @@
       patiMuteAriaLabel: "Mute Pati's voice",
       patiUnmuteAriaLabel: "Unmute Pati's voice",
 
-      footerText: "© 2026 Nehir Macar · v1.2.0 · August 6, 2026",
+      footerText: "© 2026 Nehir Macar · v1.3.0 · August 7, 2026",
     },
 
     fr: {
@@ -253,7 +253,7 @@
       patiMuteAriaLabel: "Couper le son de Pati",
       patiUnmuteAriaLabel: "Activer le son de Pati",
 
-      footerText: "© 2026 Nehir Macar · v1.2.0 · 6 août 2026",
+      footerText: "© 2026 Nehir Macar · v1.3.0 · 7 août 2026",
     },
   };
 
